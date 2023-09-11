@@ -130,33 +130,42 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Nama Toko</th>
+                                            <th>Deskripsi</th>
+                                            <th>Jenis</th>
+                                            <th>Rating</th>
+                                            <th>Alamat</th>
+                                            <th>Gambar</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Position</th>
-                                            <th>Office</th>
-                                            <th>Age</th>
-                                            <th>Start date</th>
-                                            <th>Salary</th>
+                                            <th>Nama Toko</th>
+                                            <th>Deskripsi</th>
+                                            <th>Jenis</th>
+                                            <th>Rating</th>
+                                            <th>Alamat</th>
+                                            <th>Gambar</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <?php
+                                        include "koneksi.php";
+                                        $stmt = $conn->prepare("SELECT nama_toko, deskripsi, jenis, rating, alamat, gambar FROM tabel_toko");
+                                        $stmt->execute();
+
+                                        // set the resulting array to associative
+                                        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+                                        foreach(new RecursiveArrayIterator($stmt->fetchAll()) as $k=>$data):?>
                                         <tr>
-                                            <td>Donna Snider</td>
-                                            <td>Customer Support</td>
-                                            <td>New York</td>
-                                            <td>27</td>
-                                            <td>2011/01/25</td>
-                                            <td>$112,000</td>
+                                            <td><?= $data['nama_toko'] ?></td>
+                                            <td><?= $data['deskripsi'] ?></td>
+                                            <td><?= $data['jenis'] ?></td>
+                                            <td><?= $data['rating'] ?></td>
+                                            <td><?= $data['alamat'] ?></td>
+                                            <td><?= $data['gambar'] ?></td>
                                         </tr>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>

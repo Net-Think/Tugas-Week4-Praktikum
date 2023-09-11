@@ -1,11 +1,3 @@
-<?php
-include 'Toko.php';
-$toko = new Toko();
-
-$tokos = $toko->getData();
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +53,7 @@ $tokos = $toko->getData();
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.php">
+                <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
@@ -121,50 +113,57 @@ $tokos = $toko->getData();
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
-
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Nama Toko</th>
-                                            <th>Deskripsi</th>
-                                            <th>Jenis</th>
-                                            <th>Rating</th>
-                                            <th>Alamat</th>
-                                            <th>Gambar</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php 
-                                    foreach(new RecursiveArrayIterator($tokos->fetchAll()) as $k=>$data):?>
-                                        <tr>
-                                            <td><?= $data['nama_toko'] ?></td>
-                                            <td><?= $data['deskripsi'] ?></td>
-                                            <td><?= $data['jenis'] ?></td>
-                                            <td><?= $data['rating'] ?></td>
-                                            <td><?= $data['alamat'] ?></td>
-                                            <td><?= $data['gambar'] ?></td>
-                                           
-                                        </tr>
-                                    <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                <h1 class="h3 mb-2 text-gray-800">Form Insert Data Toko</h1>
+                    <div class="mb-3">
+                        <label for="nama_toko">Nama Toko</label>
+                        <input type="text" class="form-control" id="nama_toko" placeholder="Masukan nama toko" name="nama_toko">
                     </div>
-
+                    <div class="mb-3">
+                        <label for="deskripsi">Deskripsi</label>
+                        <input type="textarea" class="form-control" id="deskripsi" placeholder="Masukan deskripsi toko" name="deskripsi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jenis">Jenis</label>
+                        <input type="text" class="form-control" id="jenis" placeholder="Masukan jenis toko" name="jenis">
+                    </div>
+                    <div class="mb-3">
+                        <label for="rating">Rating</label>
+                        <input type="text" class="form-control" id="rating" placeholder="Masukan rating toko" name="rating">
+                    </div>
+                    <div class="mb-3">
+                        <label for="alamat">Alamat</label>
+                        <input type="textarea" class="form-control" id="alamat" placeholder="Masukan alamat toko" name="alamat">
+                    </div>
+                    <div class="mb-3">
+                        <label for="lattitude">Lattitude</label>
+                        <input type="text" class="form-control" id="lattitude" placeholder="Masukan lattitude" name="lattitude">
+                    </div>
+                    <div class="mb-3">
+                        <label for="longitude">Longitude</label>
+                        <input type="text" class="form-control" id="longitude" placeholder="Masukan longitude" name="longitude">
+                    </div>
+                    <div class="mb-3">
+                        <label for="no_telp">Nomor Telepon</label>
+                        <input type="text" class="form-control" id="no_telp" placeholder="Masukan nomor telepon" name="no_telp">
+                    </div>
+                    <div class="mb-3">
+                        <label for="website">Website</label>
+                        <input type="text" class="form-control" id="website" placeholder="Masukan website" name="website">
+                    </div>
+                    <div class="mb-3">
+                        <label for="gambar">Gambar Toko</label>
+                        <input type="file" class="form-control" id="gambar" name="gambar">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jam_buka">Jam Buka</label>
+                        <input type="text" class="form-control" id="jam_buka" placeholder="Masukan jam buka" name="jam_buka">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jam_tutup">Jam tutup</label>
+                        <input type="text" class="form-control" id="jam_tutup" placeholder="Masukan jam tutup" name="jam_tutup">
+                    </div>
+                    <input type="submit" class="btn btn-primary" value="Simpan!">
+                    <a class="btn btn-primary" href="tables.php">Batal</a>
                 </div>
                 <!-- /.container-fluid -->
 

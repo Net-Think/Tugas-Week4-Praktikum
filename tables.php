@@ -1,3 +1,10 @@
+<?php
+include 'Toko.php';
+$toko = new Toko();
+
+$tokos = $toko->getData();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +60,7 @@
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
@@ -149,14 +156,8 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <?php
-                                        include "koneksi.php";
-                                        $stmt = $conn->prepare("SELECT nama_toko, deskripsi, jenis, rating, alamat, gambar FROM tabel_toko");
-                                        $stmt->execute();
-
-                                        // set the resulting array to associative
-                                        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-                                        foreach(new RecursiveArrayIterator($stmt->fetchAll()) as $k=>$data):?>
+                                    <?php 
+                                    foreach(new RecursiveArrayIterator($tokos->fetchAll()) as $k=>$data):?>
                                         <tr>
                                             <td><?= $data['nama_toko'] ?></td>
                                             <td><?= $data['deskripsi'] ?></td>
@@ -165,7 +166,7 @@
                                             <td><?= $data['alamat'] ?></td>
                                             <td><?= $data['gambar'] ?></td>
                                         </tr>
-                                        <?php endforeach ?>
+                                    <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>

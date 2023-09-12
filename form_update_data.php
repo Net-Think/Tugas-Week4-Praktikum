@@ -2,6 +2,27 @@
 include 'Toko.php';
 $toko = new Toko();
 
+$id = isset($_GET['id']) ? $_GET['id'] : die('ERROR: Data ID tidak ditemukan.');
+
+$data = $toko->getDataId($id);
+
+if (!$data) {
+    die('Data tidak ditemukan.');
+}
+
+$nama_toko = $data['nama_toko'];
+$deskripsi = $data['deskripsi'];
+$jenis = $data['jenis'];
+$rating = $data['rating'];
+$alamat = $data['alamat'];
+$lattitude = $data['lattitude'];
+$longitude = $data['longitude'];
+$no_telp = $data['no_telp'];
+$website = $data['website'];
+$gambar = $data['gambar'];
+$jam_buka = $data['jam_buka'];
+$jam_tutup = $data['jam_tutup'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $toko->nama_toko = $_POST['nama_toko'];
     $toko->deskripsi = $_POST['deskripsi'];
@@ -12,16 +33,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $toko->longitude = $_POST['longitude'];
     $toko->no_telp   = $_POST['no_telp'];
     $toko->website   = $_POST['website'];
-    $toko->gambar    = $_FILES['gambar']['name'];
     $toko->jam_buka  = $_POST['jam_buka'];
     $toko->jam_tutup = $_POST['jam_tutup'];
 
-    if($toko->insertData()){
-        echo "Data toko berhasil ditambah.";
-        header("Location: tables.php"); 
+    // Handle image update
+    if (!empty($_FILES['gambar']['name'])) {
+        $toko->gambar = $_FILES['gambar']['name'];
+    } else {
+        // No new image provided, keep the old one
+        $data = $toko->getDataId($id);
+        $toko->gambar = $data['gambar'];
+    }
+
+    if ($toko->updateData($id)) {
+        echo "Data toko berhasil diperbarui.";
+        header("Location: tables.php");
         exit;
     } else {
-        echo "Gagal menambah data toko.";
+        echo "Gagal memperbarui data toko.";
     }
 }
 
@@ -147,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <h1 class="h3 mb-2 text-gray-800">Form Insert Data Toko</h1>
+                    <h1 class="h3 mb-2 text-gray-800">Form Update Data Toko</h1>
                 <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -156,38 +185,38 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-xl-6 col-12">
-                                    <form action="form_insert_data.php" method="POST" enctype='multipart/form-data'>
+                                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}"); ?>" method="POST" enctype='multipart/form-data'>
                                         <div class="form-group">
                                             <label for="NamaToko">Nama Toko</label>
-                                            <input type="text" class="form-control" id="NamaToko" aria-describedby="NamaToko" name="nama_toko">
+                                            <input type="text" class="form-control" id="NamaToko" aria-describedby="NamaToko" name="nama_toko" value="<?= $nama_toko; ?>">
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="Jenis">Jenis</label>
-                                                <input type="text" class="form-control" id="Jenis" aria-describedby="Jenis" name="jenis">
+                                                <input type="text" class="form-control" id="Jenis" aria-describedby="Jenis" name="jenis" value="<?= $jenis; ?>">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Rating">Rating</label>
-                                                <input type="text" class="form-control" id="Rating" aria-describedby="Rating" name="rating">
+                                                <input type="text" class="form-control" id="Rating" aria-describedby="Rating" name="rating" value="<?= $rating; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="Alamat">Alamat</label>
-                                            <textarea class="form-control" id="alamat" name="alamat" rows="5"></textarea>
+                                            <textarea class="form-control" id="alamat" name="alamat" rows="5"><?= $alamat; ?></textarea>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="Lattitude">Lattitude</label>
-                                                <input type="text" class="form-control" id="Lattitude" aria-describedby="Lattitude" name="lattitude">
+                                                <input type="text" class="form-control" id="Lattitude" aria-describedby="Lattitude" name="lattitude" value="<?= $lattitude; ?>">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Longitude">Longitude</label>
-                                                <input type="text" class="form-control" id="Longitude" aria-describedby="Longitude" name="longitude">
+                                                <input type="text" class="form-control" id="Longitude" aria-describedby="Longitude" name="longitude" value="<?= $longitude; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="NoTelp">Nomor Telepon</label>
-                                            <input type="number" class="form-control" id="NoTelp" aria-describedby="NoTelp" name="no_telp">
+                                            <input type="number" class="form-control" id="NoTelp" aria-describedby="NoTelp" name="no_telp" value="<?= $no_telp; ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="gambar">Website</label>
@@ -195,22 +224,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                                 <div class="input-group-prepend">
                                                 <div class="input-group-text">https://</div>
                                                 </div>
-                                                <input type="link" class="form-control" id="Website" aria-describedby="Website" name="website">
+                                                <input type="link" class="form-control" id="Website" aria-describedby="Website" name="website" value="<?= $website; ?>">
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="JamBuka">Jam Buka</label>
-                                                <input type="time" class="form-control" id="JamBuka" aria-describedby="JamBuka" name="jam_buka">
+                                                <input type="time" class="form-control" id="JamBuka" aria-describedby="JamBuka" name="jam_buka" value="<?= $jam_buka; ?>">
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="JamTutup">Jam Tutup</label>
-                                                <input type="time" class="form-control" id="JamTutup" aria-describedby="JamTutup" name="jam_tutup">
+                                                <input type="time" class="form-control" id="JamTutup" aria-describedby="JamTutup" name="jam_tutup" value="<?= $jam_tutup; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="deskripsi">Deskripsi Toko</label>
-                                            <textarea class="form-control" id="deskripsi" rows="5" name="deskripsi"></textarea>
+                                            <textarea class="form-control" id="deskripsi" rows="5" name="deskripsi"><?= $deskripsi; ?></textarea>
                                         </div>
                                         <button type="cancel" class="btn btn-secondary">Cancel</button>
                                         <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
@@ -222,6 +251,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <label class="custom-file-label" for="customFile">Choose file</label>
                                     </div>
                                     <div class="row mt-3">
+                                        <div class="col-12" id="foto">
+                                            <img class="img-thumbnail img-fluid" src="uploads/<?= $gambar ?>" width="200">
+                                        </div>
                                         <div class="col-12" id="show">
                                             <img id="output" class="img-thumbnail img-fluid" width="200">
                                         </div>
@@ -302,6 +334,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script>
         function hide() {
             $('#show ').css("display", "block");
+            $('#foto').css("display", "none");
         }
     </script>
     <script>

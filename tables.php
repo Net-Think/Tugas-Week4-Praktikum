@@ -4,7 +4,17 @@ $toko = new Toko();
 
 $tokos = $toko->getData();
 
-
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    
+    if ($toko->hapusData($id)) {
+        echo "Pengguna berhasil dihapus.";
+        header("Location: tables.php"); 
+        exit;
+    } else {
+        echo "Gagal menghapus pengguna.";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +40,7 @@ $tokos = $toko->getData();
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
 
 </head>
 
@@ -138,27 +149,33 @@ $tokos = $toko->getData();
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>No</th>
                                             <th>Nama Toko</th>
                                             <th>Deskripsi</th>
                                             <th>Jenis</th>
                                             <th>Rating</th>
                                             <th>Alamat</th>
                                             <th>Gambar</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                     <?php 
-                                    foreach(new RecursiveArrayIterator($tokos->fetchAll()) as $k=>$data):?>
+                                    $no = 1;
+                                    while ($data = $tokos->fetch(PDO::FETCH_ASSOC)):?>
                                         <tr>
+                                           <td><?= $no++ ?></td>
                                             <td><?= $data['nama_toko'] ?></td>
                                             <td><?= $data['deskripsi'] ?></td>
                                             <td><?= $data['jenis'] ?></td>
                                             <td><?= $data['rating'] ?></td>
                                             <td><?= $data['alamat'] ?></td>
                                             <td><?= $data['gambar'] ?></td>
-                                           
+                                            <td>
+                                            <a href="tables.php?delete=<?php echo $data['id']; ?>">Hapus</a>
+                                            </td>
                                         </tr>
-                                    <?php endforeach; ?>
+                                    <?php endwhile; ?>
                                     </tbody>
                                 </table>
                             </div>

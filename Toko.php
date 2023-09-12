@@ -17,8 +17,17 @@ class Toko
             return false;
         }
     }
+    public function hapusData($id)
+    {
+        try {
+            $stmt = $this->db->prepare("DELETE FROM tabel_toko WHERE id = :id");
+            $stmt->bindParam(":id", $id);
 
-
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+            return false;
+        }
+    }
 }
-
 ?>

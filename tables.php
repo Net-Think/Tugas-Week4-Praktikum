@@ -29,6 +29,7 @@ $tokos = $toko->getData();
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
 
 </head>
 
@@ -143,6 +144,7 @@ $tokos = $toko->getData();
                                             <th>Rating</th>
                                             <th>Alamat</th>
                                             <th>Gambar</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -153,18 +155,24 @@ $tokos = $toko->getData();
                                             <th>Rating</th>
                                             <th>Alamat</th>
                                             <th>Gambar</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                     <?php 
                                     foreach(new RecursiveArrayIterator($tokos->fetchAll()) as $k=>$data):?>
                                         <tr>
+                                            <td><?= $data['id'] ?></td>
                                             <td><?= $data['nama_toko'] ?></td>
                                             <td><?= $data['deskripsi'] ?></td>
                                             <td><?= $data['jenis'] ?></td>
                                             <td><?= $data['rating'] ?></td>
                                             <td><?= $data['alamat'] ?></td>
                                             <td><?= $data['gambar'] ?></td>
+                                            <td>
+                                                <!--<a href="index.php?page=ubah_datatoko&id=<?=$row['id'];?>" class="btn btn-success" role="button" title="Ubah Data">Ubah</a>-->
+                                                <a href="<?php $toko->hapusData($data['id'])?>" class="btn btn-danger" role="button" title="Hapus Data" onclick="return confirm('Yakin ingin hapus?')">Hapus</a>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                     </tbody>

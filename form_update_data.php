@@ -23,7 +23,7 @@ $gambar = $data['gambar'];
 $jam_buka = $data['jam_buka'];
 $jam_tutup = $data['jam_tutup'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if (isset($_POST["submit"])) {
     $toko->nama_toko = $_POST['nama_toko'];
     $toko->deskripsi = $_POST['deskripsi'];
     $toko->jenis     = $_POST['jenis'];
@@ -188,35 +188,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}"); ?>" method="POST" enctype='multipart/form-data'>
                                         <div class="form-group">
                                             <label for="NamaToko">Nama Toko</label>
-                                            <input type="text" class="form-control" id="NamaToko" aria-describedby="NamaToko" name="nama_toko" value="<?= $nama_toko; ?>">
+                                            <input type="text" class="form-control" id="NamaToko" aria-describedby="NamaToko" name="nama_toko" value="<?= $nama_toko; ?>" required>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="Jenis">Jenis</label>
-                                                <input type="text" class="form-control" id="Jenis" aria-describedby="Jenis" name="jenis" value="<?= $jenis; ?>">
+                                                <input type="text" class="form-control" id="Jenis" aria-describedby="Jenis" name="jenis" value="<?= $jenis; ?>" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Rating">Rating</label>
-                                                <input type="text" class="form-control" id="Rating" aria-describedby="Rating" name="rating" value="<?= $rating; ?>">
+                                                <input type="text" class="form-control" id="Rating" aria-describedby="Rating" name="rating" value="<?= $rating; ?>" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="Alamat">Alamat</label>
-                                            <textarea class="form-control" id="alamat" name="alamat" rows="5"><?= $alamat; ?></textarea>
+                                            <textarea class="form-control" id="alamat" name="alamat" rows="5" required><?= $alamat; ?></textarea>
                                         </div>
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="Lattitude">Lattitude</label>
-                                                <input type="text" class="form-control" id="Lattitude" aria-describedby="Lattitude" name="lattitude" value="<?= $lattitude; ?>">
+                                                <input type="text" class="form-control" id="Lattitude" aria-describedby="Lattitude" name="lattitude" value="<?= $lattitude; ?>" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="Longitude">Longitude</label>
-                                                <input type="text" class="form-control" id="Longitude" aria-describedby="Longitude" name="longitude" value="<?= $longitude; ?>">
+                                                <input type="text" class="form-control" id="Longitude" aria-describedby="Longitude" name="longitude" value="<?= $longitude; ?>" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="NoTelp">Nomor Telepon</label>
-                                            <input type="number" class="form-control" id="NoTelp" aria-describedby="NoTelp" name="no_telp" value="<?= $no_telp; ?>">
+                                            <input type="number" class="form-control" id="NoTelp" aria-describedby="NoTelp" name="no_telp" value="<?= $no_telp; ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="gambar">Website</label>
@@ -230,18 +230,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="JamBuka">Jam Buka</label>
-                                                <input type="time" class="form-control" id="JamBuka" aria-describedby="JamBuka" name="jam_buka" value="<?= $jam_buka; ?>">
+                                                <input type="time" class="form-control" id="JamBuka" aria-describedby="JamBuka" name="jam_buka" value="<?= $jam_buka; ?>" required>
                                             </div>
                                             <div class="form-group col-md-6">
                                                 <label for="JamTutup">Jam Tutup</label>
-                                                <input type="time" class="form-control" id="JamTutup" aria-describedby="JamTutup" name="jam_tutup" value="<?= $jam_tutup; ?>">
+                                                <input type="time" class="form-control" id="JamTutup" aria-describedby="JamTutup" name="jam_tutup" value="<?= $jam_tutup; ?>" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="deskripsi">Deskripsi Toko</label>
-                                            <textarea class="form-control" id="deskripsi" rows="5" name="deskripsi"><?= $deskripsi; ?></textarea>
+                                            <textarea class="form-control" id="deskripsi" rows="5" name="deskripsi" required><?= $deskripsi; ?></textarea>
                                         </div>
-                                        <button type="cancel" class="btn btn-secondary">Cancel</button>
+                                        <a href="tables.php" class="btn btn-secondary">Cancel</a>
                                         <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
                                 </div>
                                 <div class="col-xl-5 col-12">
@@ -273,7 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyright &copy; Talas Care 2023</span>
                     </div>
                 </div>
             </footer>

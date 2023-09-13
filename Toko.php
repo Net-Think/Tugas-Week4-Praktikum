@@ -1,5 +1,5 @@
 <?php
-include 'Database.php';
+include 'config/Koneksi.php';
 class Toko
 {
     private $db;
@@ -16,7 +16,7 @@ class Toko
     public $jam_buka;
     public $jam_tutup;
     public function __construct(){
-        $this->db = Database::getInstance()->getConnection();
+        $this->db = Koneksi::getInstance()->getConnection();
     }
 
     public function getData()

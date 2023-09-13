@@ -1,5 +1,5 @@
 <?php
-include 'Toko.php';
+include 'models/Toko.php';
 $toko = new Toko();
 
 $tokos = $toko->getData();
@@ -71,8 +71,8 @@ if (isset($_GET['delete'])) {
             </li>
             
             
-            <!-- Divider -->
-            <hr class="sidebar-divider">
+            <!-- Divider
+            <hr class="sidebar-divider"> -->
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">

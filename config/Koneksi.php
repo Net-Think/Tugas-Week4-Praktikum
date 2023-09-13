@@ -1,10 +1,10 @@
 <?php
-include 'DatabaseConfig.php';
-class Database{
+include 'KoneksiConfig.php';
+class Koneksi{
     private static $instance = null;
     private $conn;
     private function __construct(){
-        $config = new DatabaseConfig();
+        $config = new KoneksiConfig();
         $dbHost  = $config->getHost();
         $dbUsername =  $config->getUsername();
         $dbPassword =  $config->getPassword();
@@ -21,7 +21,7 @@ class Database{
 
     public static function getInstance(){
         if(self::$instance == null){
-            self::$instance = new Database();
+            self::$instance = new Koneksi();
         }
         return self::$instance;
     }

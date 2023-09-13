@@ -1,6 +1,6 @@
 <?php
 
-class DatabaseConfig
+class KoneksiConfig
 {
     private  $dbHost  = "localhost";
     private $dbUsername = "root";

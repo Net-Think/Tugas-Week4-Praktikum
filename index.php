@@ -1,21 +1,3 @@
-<?php
-include 'models/Toko.php';
-$toko = new Toko();
-
-$tokos = $toko->getData();
-
-if (isset($_GET['delete'])) {
-    $id = $_GET['delete'];
-    
-    if ($toko->hapusData($id)) {
-        echo "Pengguna berhasil dihapus.";
-        header("Location: tables.php"); 
-        exit;
-    } else {
-        echo "Gagal menghapus pengguna.";
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,20 +9,16 @@ if (isset($_GET['delete'])) {
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Admin</title>
+    <title>Dashboard Admin</title>
 
-    <!-- Custom fonts for this template -->
+    <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this page -->
-    <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
 
 </head>
 
@@ -64,18 +42,17 @@ if (isset($_GET['delete'])) {
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-            
-            
+
             <!-- Divider
             <hr class="sidebar-divider"> -->
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="tables.php">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Toko Obat</span></a>
@@ -102,11 +79,9 @@ if (isset($_GET['delete'])) {
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <form class="form-inline">
-                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                    </form>
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -139,53 +114,35 @@ if (isset($_GET['delete'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Toko Obat</h1>
-                        <a href="form_insert_data.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        
                     </div>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Toko Obat</h6>
+                   
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-12 mb-4">
+
+                            <!-- Approach -->
+                            <div class="card shadow mb-4">
+                                            <div class="card-header py-3">
+                                                <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+                                                    CSS bloat and poor page performance. Custom CSS classes are used to create
+                                                    custom components and custom utility classes.</p>
+                                                <p class="mb-0">Before working with this theme, you should become familiar with the
+                                                    Bootstrap framework, especially the utility classes.</p>
+                                            </div>
+                                        </div>
+          
+
                         </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama Toko</th>
-                                            <th>Deskripsi</th>
-                                            <th>Jenis</th>
-                                            <th>Rating</th>
-                                            <th>Alamat</th>
-                                            <th>Gambar</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php 
-                                    $no = 1;
-                                    while ($data = $tokos->fetch(PDO::FETCH_ASSOC)):?>
-                                        <tr>
-                                            <td><?= $no++ ?></td>
-                                            <td><?= $data['nama_toko'] ?></td>
-                                            <td><?= $data['deskripsi'] ?></td>
-                                            <td><?= $data['jenis'] ?></td>
-                                            <td><?= $data['rating'] ?></td>
-                                            <td><?= $data['alamat'] ?></td>
-                                            <td><img class="img img-fluid" width="100" src="uploads/<?= $data['gambar'] ?>" alt="<?= $data['gambar'] ?>"></td>
-                                            <td>
-                                                <a class="btn btn-danger" onclick="return confirm('Yakin ingin hapus?')" href="tables.php?delete=<?php echo $data['id']; ?>"><i class="fas fa-trash fa-sm text-white"></i></a>
-                                                <a class="btn btn-success" href="form_update_data.php?id=<?php echo $data['id']; ?>"><i class="fas fa-pen fa-sm text-white"></i></a>
-                                            </td>
-                                        </tr>
-                                    <?php endwhile; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+
                     </div>
 
                 </div>
@@ -246,11 +203,11 @@ if (isset($_GET['delete'])) {
     <script src="assets/js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="assets/vendor/chart.js/Chart.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="assets/js/demo/datatables-demo.js"></script>
+    <script src="assets/js/demo/chart-area-demo.js"></script>
+    <script src="assets/js/demo/chart-pie-demo.js"></script>
 
 </body>
 

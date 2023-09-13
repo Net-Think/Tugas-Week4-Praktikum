@@ -53,7 +53,7 @@ if (isset($_GET['delete'])) {
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -65,7 +65,7 @@ if (isset($_GET['delete'])) {
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -134,15 +134,16 @@ if (isset($_GET['delete'])) {
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-                    <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
-                        For more information about DataTables, please visit the <a target="_blank"
-                            href="https://datatables.net">official DataTables documentation</a>.</p>
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Data Toko</h1>
+                        <a href="form_insert_data.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
+                    </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Data Toko</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -164,15 +165,16 @@ if (isset($_GET['delete'])) {
                                     $no = 1;
                                     while ($data = $tokos->fetch(PDO::FETCH_ASSOC)):?>
                                         <tr>
-                                           <td><?= $no++ ?></td>
+                                            <td><?= $no++ ?></td>
                                             <td><?= $data['nama_toko'] ?></td>
                                             <td><?= $data['deskripsi'] ?></td>
                                             <td><?= $data['jenis'] ?></td>
                                             <td><?= $data['rating'] ?></td>
                                             <td><?= $data['alamat'] ?></td>
-                                            <td><?= $data['gambar'] ?></td>
+                                            <td><img class="img img-fluid" width="100" src="uploads/<?= $data['gambar'] ?>" alt="<?= $data['gambar'] ?>"></td>
                                             <td>
-                                            <a href="tables.php?delete=<?php echo $data['id']; ?>">Hapus</a>
+                                                <a class="btn btn-danger" onclick="return confirm('Yakin ingin hapus?')" href="tables.php?delete=<?php echo $data['id']; ?>"><i class="fas fa-trash fa-sm text-white"></i></a>
+                                                <a class="btn btn-success" href="form_update_data.php?id=<?php echo $data['id']; ?>"><i class="fas fa-pen fa-sm text-white"></i></a>
                                             </td>
                                         </tr>
                                     <?php endwhile; ?>

@@ -1,6 +1,6 @@
 // Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-Chart.defaults.global.defaultFontColor = '#858796';
+Chart.defaults.global.defaultFontColor = '#2B3674';
 
 // Pie Chart Example
 var ctx = document.getElementById("myPieChart");
@@ -10,16 +10,14 @@ var myPieChart = new Chart(ctx, {
     labels: ["Signed In", "Not Signed In"],
     datasets: [{
       data: [55, 30],
-      backgroundColor: ['#4e73df', '#1cc88a'],
-      hoverBackgroundColor: ['#2e59d9', '#17a673'],
-      hoverBorderColor: "rgba(234, 236, 244, 1)",
+      backgroundColor: ['#C082B1', '#DEA9D1'],
     }],
   },
   options: {
     maintainAspectRatio: false,
     tooltips: {
       backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
+      bodyFontColor: "#2B3674",
       borderColor: '#dddfeb',
       borderWidth: 1,
       xPadding: 15,

@@ -36,14 +36,14 @@ var myLineChart = new Chart(ctx, {
     datasets: [{
       label: "Total Pengunjung",
       lineTension: 0.3,
-      backgroundColor: "rgba(78, 115, 223, 0.05)",
-      borderColor: "rgba(78, 115, 223, 1)",
+      backgroundColor: "rgba(192, 130, 177, 0.20)",
+      borderColor: "#C082B1",
       pointRadius: 3,
-      pointBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointBorderColor: "rgba(78, 115, 223, 1)",
+      pointBackgroundColor: "#C082B1",
+      pointBorderColor: "#C082B1",
       pointHoverRadius: 3,
-      pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-      pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+      pointHoverBackgroundColor: "#C082B1",
+      pointHoverBorderColor: "#C082B1",
       pointHitRadius: 10,
       pointBorderWidth: 2,
       data: [0, 1000, 500, 1500, 1000, 2000, 1500, 2500, 2000, 3000, 2500, 4000],
@@ -78,7 +78,7 @@ var myLineChart = new Chart(ctx, {
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value);
           }
         },
         gridLines: {
@@ -110,7 +110,7 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
         }
       }
     }

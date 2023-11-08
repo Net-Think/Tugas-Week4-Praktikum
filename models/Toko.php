@@ -61,7 +61,7 @@ class Toko
             $db_query = "INSERT INTO tabel_toko
                         (`nama_toko`, `deskripsi`, `jenis`, `rating`, `alamat`, `lattitude`, `longitude`, `no_telp`, `website`, `gambar`, `jam_buka`, `jam_tutup`)
                         VALUES (
-                            :nama_toko,
+                            :nama_toko, 
                             :deskripsi,
                             :jenis,
                             :rating,

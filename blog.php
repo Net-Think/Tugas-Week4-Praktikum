@@ -9,7 +9,7 @@ if (isset($_GET['delete'])) {
     
     if ($toko->hapusData($id)) {
         echo "Pengguna berhasil dihapus.";
-        header("Location: tables.php"); 
+        header("Location: tokoobat.php"); 
         exit;
     } else {
         echo "Gagal menghapus pengguna.";
@@ -30,13 +30,14 @@ if (isset($_GET['delete'])) {
     <title>Admin</title>
 
     <!-- Custom fonts for this template -->
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="assets/css/style-admin.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -44,52 +45,75 @@ if (isset($_GET['delete'])) {
 
 </head>
 
-<body id="page-top">
-
+<body id="page-top">    
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar-white sidebar sidebar-purple accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Admin</div>
-            </a>
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+    <div class="sidebar-brand-icon">
+        <img src="assets/img/Logo.svg" class="img-fluid" alt="">
+    </div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0 mt-4 mb-3">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-            
-            
-            <!-- Divider
-            <hr class="sidebar-divider"> -->
+<!-- Nav Item -->
+<li class="nav-item">
+    <a class="nav-link" href="index.php">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+    </a>
+</li>
+<li class="nav-item">
+                <a class="nav-link" href="pengguna.php">
+                <i class="fa-solid fa-users"></i>
+                    <span>Pengguna</span>
+                </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="tokoobat.php">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Toko Obat</span>
+    </a>
+</li>
+<li class="nav-item">
+                <a class="nav-link" href="talasinfo.php">
+                <i class="fa-solid fa-leaf"></i>
+                    <span>Talas Info</span>
+                </a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="blog.php">
+        <i class="fa-solid fa-blog"></i>
+        <span>Blog</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="forum.php">
+        <i class="fa-solid fa-message"></i>
+        <span>Forum</span>
+    </a>
+</li>
+<li class="nav-item ">
+    <a class="nav-link" href="logout.php">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+</li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Toko Obat</span></a>
-            </li>
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block my-0 mt-3 mb-4">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+</ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -139,49 +163,46 @@ if (isset($_GET['delete'])) {
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Toko Obat</h1>
-                        <a href="form_insert_data.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-plus fa-sm text-white-50"></i> Tambah Data</a>
+                        <h1 class="h3 mb-0 font-primary">Data Blog</h1>
+                        <a href="tambahdatablog.php" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                        <i class="fa-solid fa-plus"></i> Tambah Data</a>
                     </div>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Data Toko Obat</h6>
+                            <h6 class="m-0 font-weight-bold font-primary">Data Blog</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>No</th>
-                                            <th>Nama Toko</th>
+                                            <th>Judul Blog</th>
                                             <th>Deskripsi</th>
-                                            <th>Jenis</th>
-                                            <th>Rating</th>
-                                            <th>Alamat</th>
-                                            <th>Gambar</th>
+                                            <th>Tags</th>
+                                            <th>Date/Time</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                    <?php 
-                                    $no = 1;
-                                    while ($data = $tokos->fetch(PDO::FETCH_ASSOC)):?>
                                         <tr>
-                                            <td><?= $no++ ?></td>
-                                            <td><?= $data['nama_toko'] ?></td>
-                                            <td><?= $data['deskripsi'] ?></td>
-                                            <td><?= $data['jenis'] ?></td>
-                                            <td><?= $data['rating'] ?></td>
-                                            <td><?= $data['alamat'] ?></td>
-                                            <td><img class="img img-fluid" width="100" src="uploads/<?= $data['gambar'] ?>" alt="<?= $data['gambar'] ?>"></td>
+                                            <td>Manfaat Tanaman Talas bagi Kehidupan Manusia</td>
+                                            <td><span class="d-inline-block text-truncate" style="max-width: 150px;">Artikel ini mengulas beragam manfaat yang dimiliki tanaman talas dalam aspek pangan, pertanian, dan kesehatan manusia, serta kontribusinya dalam memenuhi kebutuhan pangan dan ekonomi masyarakat.</span></td>
                                             <td>
-                                                <a class="btn btn-danger" onclick="return confirm('Yakin ingin hapus?')" href="tables.php?delete=<?php echo $data['id']; ?>"><i class="fas fa-trash fa-sm text-white"></i></a>
-                                                <a class="btn btn-success" href="form_update_data.php?id=<?php echo $data['id']; ?>"><i class="fas fa-pen fa-sm text-white"></i></a>
+                                                <small class="bg-purple-secondary rounded">  Tanaman </small>
+                                                <small class="bg-purple-secondary rounded">Talas</small>
+                                                <small class="bg-purple-secondary rounded">Manfaat</small>
+                                            </td>
+                                            <td>22/10/2023</td>
+                                            <td><small class="btn btn-primary disabled bg-purple-secondary rounded">  published </small></td>
+                                            <td>
+                                                <a class="btn btn-purple-secondary" onclick="return confirm('Yakin ingin hapus?')"><i class="fas fa-trash fa-sm text-white"></i></a>
+                                                <a class="btn btn-success-secondary" href="formupdateblog.php"><i class="fas fa-pen fa-sm text-white"></i></a>
+                                                <a class="btn btn-primary" href="previewhama.php"><i class="fa-solid fa-eye text-white"></i></a>
                                             </td>
                                         </tr>
-                                    <?php endwhile; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -195,7 +216,7 @@ if (isset($_GET['delete'])) {
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Talas Care 2023</span>

@@ -22,7 +22,7 @@ class Toko
     public function getData()
     {
         try {
-            $result = $this->db->query("SELECT * FROM tabel_toko");
+            $result = $this->db->query("SELECT * FROM tbl_toko");
             return $result;
         } catch (PDOException $e) {
             echo "Error". $e->getMessage();
@@ -32,7 +32,7 @@ class Toko
     public function hapusData($id)
     {
         try {
-            $stmt = $this->db->prepare("DELETE FROM tabel_toko WHERE id = :id");
+            $stmt = $this->db->prepare("DELETE FROM tbl_toko WHERE id = :id");
             $stmt->bindParam(":id", $id);
 
             return $stmt->execute();
@@ -58,7 +58,7 @@ class Toko
             $jam_buka = $this->sanitize_data($this->jam_buka);
             $jam_tutup = $this->sanitize_data($this->jam_tutup);
 
-            $db_query = "INSERT INTO tabel_toko
+            $db_query = "INSERT INTO tbl_toko
                         (`nama_toko`, `deskripsi`, `jenis`, `rating`, `alamat`, `lattitude`, `longitude`, `no_telp`, `website`, `gambar`, `jam_buka`, `jam_tutup`)
                         VALUES (
                             :nama_toko, 
@@ -131,7 +131,7 @@ class Toko
     public function getDataId($id)
     {
         try {
-            $db_query = "SELECT * FROM tabel_toko WHERE id = :id LIMIT 1";
+            $db_query = "SELECT * FROM tbl_toko WHERE id = :id LIMIT 1";
             $stmt = $this->db->prepare($db_query);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             $stmt->execute();
@@ -178,7 +178,7 @@ class Toko
             $gambar = $oldData['gambar'];
         }
 
-        $db_query = "UPDATE tabel_toko SET
+        $db_query = "UPDATE tbl_toko SET
                     `nama_toko` = :nama_toko,
                     `deskripsi` = :deskripsi,
                     `jenis` = :jenis,

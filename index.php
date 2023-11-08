@@ -12,56 +12,79 @@
     <title>Dashboard Admin</title>
 
     <!-- Custom fonts for this template-->
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="assets/css/style-admin.css" rel="stylesheet">
 
 </head>
 
-<body id="page-top">
-
-    
+<body id="page-top">    
     <!-- Page Wrapper -->
     <div id="wrapper">
-
-               <!-- Sidebar -->
-               <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <!-- Sidebar -->
+        <ul class="navbar-nav sidebar-white sidebar sidebar-purple accordion" id="accordionSidebar">
 
 <!-- Sidebar - Brand -->
 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-    <div class="sidebar-brand-icon rotate-n-15">
-        <i class="fas fa-laugh-wink"></i>
+    <div class="sidebar-brand-icon">
+        <img src="assets/img/Logo.svg" class="img-fluid" alt="">
     </div>
-    <div class="sidebar-brand-text mx-3">Admin</div>
 </a>
 
 <!-- Divider -->
-<hr class="sidebar-divider my-0">
+<hr class="sidebar-divider my-0 mt-4 mb-3">
 
-<!-- Nav Item - Dashboard -->
+<!-- Nav Item -->
 <li class="nav-item active">
     <a class="nav-link" href="index.php">
-        <i class="fas fa-fw fa-tachometer-alt"></i>
-        <span>Dashboard</span></a>
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+    </a>
 </li>
-
-
-<!-- Divider
-<hr class="sidebar-divider"> -->
-
-<!-- Nav Item - Tables -->
+<li class="nav-item">
+                <a class="nav-link" href="pengguna.php">
+                <i class="fa-solid fa-users"></i>
+                    <span>Pengguna</span>
+                </a>
+</li>
 <li class="nav-item ">
-    <a class="nav-link" href="tables.php">
+    <a class="nav-link" href="tokoobat.php">
         <i class="fas fa-fw fa-table"></i>
-        <span>Toko Obat</span></a>
+        <span>Toko Obat</span>
+    </a>
+</li>
+<li class="nav-item">
+                <a class="nav-link" href="talasinfo.php">
+                <i class="fa-solid fa-leaf"></i>
+                    <span>Talas Info</span>
+                </a>
+</li>
+<li class="nav-item ">
+    <a class="nav-link" href="blog.php">
+        <i class="fa-solid fa-blog"></i>
+        <span>Blog</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="forum.php">
+        <i class="fa-solid fa-message"></i>
+        <span>Forum</span>
+    </a>
+</li>
+<li class="nav-item ">
+    <a class="nav-link" href="logout.php">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
 </li>
 
 <!-- Divider -->
-<hr class="sidebar-divider d-none d-md-block">
+<hr class="sidebar-divider d-none d-md-block my-0 mt-3 mb-4">
 
 <!-- Sidebar Toggler (Sidebar) -->
 <div class="text-center d-none d-md-inline">
@@ -82,7 +105,7 @@
 
         <!-- Sidebar Toggle (Topbar) -->
         <form class="form-inline">
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <button id="sidebarToggleTop" class="btn btn-link purple d-md-none rounded-circle mr-3">
                 <i class="fa fa-bars"></i>
             </button>
         </form>
@@ -118,9 +141,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard Admin Talas Care</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Download Laporan</a>
+                        <h1 class="h3 mb-0 font-primary">Dashboard Admin Talas Care</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -128,45 +149,16 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-info shadow h-100 py-2">
+                            <div class="card border-left-purple shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tugas
-                                            </div>
-                                            <div class="row no-gutters align-items-center">
-                                                <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="progress progress-sm mr-2">
-                                                        <div class="progress-bar bg-info" role="progressbar"
-                                                            style="width: 50%" aria-valuenow="50" aria-valuemin="0"
-                                                            aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-gray text-uppercase mb-1">
                                                 Total User</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">1000</div>
+                                            <div class="h5 mb-0 font-weight-bold font-primary">1000</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-users fa-2x text-gray-300"></i>
+                                            <i class="fas fa-users fa-2x purple"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -175,16 +167,16 @@
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card border-left-purple shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            <div class="text-xs font-weight-bold text-gray text-uppercase mb-1">
                                                 Total Forum</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
+                                            <div class="h5 mb-0 font-weight-bold font-primary">150</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                            <i class="fas fa-comments fa-2x purple"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -193,16 +185,37 @@
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card border-left-purple shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Total Artikel</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">150</div>
+                                            <div class="text-xs font-weight-bold text-gray text-uppercase mb-1">
+                                                Total Blog</div>
+                                            <div class="h5 mb-0 font-weight-bold font-primary">12</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-file fa-2x text-gray-300"></i>
+                                            <i class="fas fa-file fa-2x purple"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-purple shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-gray text-uppercase mb-1">Total Toko Obat
+                                            </div>
+                                            <div class="row no-gutters align-items-center">
+                                                <div class="col-auto">
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold font-primary">20</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto">
+                                        <i class="fa-solid fa-store fa-2x purple"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -220,7 +233,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Grafik Total Pengunjung Website (Bulan)</h6>
+                                    <h6 class="m-0 font-weight-bold font-primary">Grafik Total Pengunjung Website (Bulan)</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -249,7 +262,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Kategori Pengunjung Website</h6>
+                                    <h6 class="m-0 font-weight-bold font-primary">Kategori Pengunjung Website</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -270,10 +283,10 @@
                                     </div>
                                     <div class="mt-4 text-center small">
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Signed In
+                                            <i class="fas fa-circle purple"></i> Signed In
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Not Signed In
+                                            <i class="fas fa-circle purple-secondary"></i> Not Signed In
                                         </span>
                                     </div>
                                 </div>
@@ -282,7 +295,7 @@
                     </div>
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Talas Care 2023</span>

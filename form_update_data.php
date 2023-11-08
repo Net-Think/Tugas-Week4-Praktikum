@@ -47,7 +47,7 @@ if (isset($_POST["submit"])) {
 
     if ($toko->updateData($id)) {
         echo "Data toko berhasil diperbarui.";
-        header("Location: tables.php");
+        header("Location: tokoobat.php");
         exit;
     } else {
         echo "Gagal memperbarui data toko.";
@@ -69,13 +69,14 @@ if (isset($_POST["submit"])) {
     <title>Admin</title>
 
     <!-- Custom fonts for this template -->
-    <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="assets/css/style-admin.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="assets/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -88,48 +89,75 @@ if (isset($_POST["submit"])) {
 
 </head>
 
-<body id="page-top">
-
+<body id="page-top">    
     <!-- Page Wrapper -->
     <div id="wrapper">
-
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar-white sidebar sidebar-purple accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">Admin</div>
-            </a>
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+    <div class="sidebar-brand-icon">
+        <img src="assets/img/Logo.svg" class="img-fluid" alt="">
+    </div>
+</a>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
+<!-- Divider -->
+<hr class="sidebar-divider my-0 mt-4 mb-3">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
+<!-- Nav Item -->
+<li class="nav-item">
+    <a class="nav-link" href="index.php">
+        <i class="fa-solid fa-house"></i>
+        <span>Dashboard</span>
+    </a>
+</li>
+<li class="nav-item">
+                <a class="nav-link" href="pengguna.php">
+                <i class="fa-solid fa-users"></i>
+                    <span>Pengguna</span>
+                </a>
+</li>
+<li class="nav-item active">
+    <a class="nav-link" href="tokoobat.php">
+        <i class="fas fa-fw fa-table"></i>
+        <span>Toko Obat</span>
+    </a>
+</li>
+<li class="nav-item">
+                <a class="nav-link" href="talasinfo.php">
+                <i class="fa-solid fa-leaf"></i>
+                    <span>Talas Info</span>
+                </a>
+</li>
+<li class="nav-item ">
+    <a class="nav-link" href="blog.php">
+        <i class="fa-solid fa-blog"></i>
+        <span>Blog</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="forum.php">
+        <i class="fa-solid fa-message"></i>
+        <span>Forum</span>
+    </a>
+</li>
+<li class="nav-item ">
+    <a class="nav-link" href="logout.php">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Logout</span>
+    </a>
+</li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item active">
-                <a class="nav-link" href="tables.php">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Toko Obat</span></a>
-            </li>
+<!-- Divider -->
+<hr class="sidebar-divider d-none d-md-block my-0 mt-3 mb-4">
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+<!-- Sidebar Toggler (Sidebar) -->
+<div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+</div>
 
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
+</ul>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -218,7 +246,9 @@ if (isset($_POST["submit"])) {
                                             <label for="NoTelp">Nomor Telepon</label>
                                             <input type="number" class="form-control" id="NoTelp" aria-describedby="NoTelp" name="no_telp" value="<?= $no_telp; ?>" required>
                                         </div>
-                                        <div class="form-group">
+                                </div>
+                                <div class="col-xl-5 col-12">
+                                <div class="form-group">
                                             <label for="gambar">Website</label>
                                             <div class="input-group mb-2">
                                                 <div class="input-group-prepend">
@@ -241,10 +271,6 @@ if (isset($_POST["submit"])) {
                                             <label for="deskripsi">Deskripsi Toko</label>
                                             <textarea class="form-control" id="deskripsi" rows="5" name="deskripsi" required><?= $deskripsi; ?></textarea>
                                         </div>
-                                        <a href="tables.php" class="btn btn-secondary">Cancel</a>
-                                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
-                                </div>
-                                <div class="col-xl-5 col-12">
                                     <label>Gambar Toko</label>
                                     <div class="custom-file">
                                         <input type="file" class="form-control" id="customFile" name="gambar" accept="image/*" onchange="loadFile(event)" onclick="hide()">
@@ -258,6 +284,13 @@ if (isset($_POST["submit"])) {
                                             <img id="output" class="img-thumbnail img-fluid" width="200">
                                         </div>
                                     </div>
+                                    <div class="row mt-3">
+                                        <div class="col-12">
+                                        <a href="tokoobat.php" class="btn btn-secondary">Cancel</a>
+                                        <button type="submit" name="submit" class="btn btn-primary">Simpan</button>
+                                        </div>
+                                    </div>
+                                    
                                         </form>
                                 </div>
                             </div>
@@ -270,7 +303,7 @@ if (isset($_POST["submit"])) {
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Talas Care 2023</span>
